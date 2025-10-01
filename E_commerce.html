@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopSmart Electronics</title>
+  <link rel="icon" type="image/png" href="ELEC.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Search results container */
+    #searchResults {
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">ShopSmart</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products...">
+    </div>
+    <div class="header-right">
+      <button id="giftBtn">🎁 Gift</button>
+      <button id="cartBtn">🛒 Cart</button>
+    </div>
+  </header>
+
+  <!-- GIFT MODAL -->
+  <div id="giftModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Send a Gift 🎁</h2>
+      <form id="giftForm">
+        <label>Recipient Name</label>
+        <input type="text" required>
+        <label>Recipient Email</label>
+        <input type="email" required>
+        <label>Message</label>
+        <textarea rows="3" placeholder="Write your message..."></textarea>
+        <button type="submit" class="login-btn">Send Gift</button>
+      </form>
+    </div>
+  </div>
+  <!-- CART MODAL -->
+
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Your Cart 🛒</h2>
+      <div id="cartItems"></div>
+      <button class="login-btn" id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#mobiles">Mobiles</a></li>
+      <li><a href="#laptops">Laptops</a></li>
+      <li><a href="#gadgets">Gadgets</a></li>
+      <li><a href="#appliances">Appliances</a></li>
+      <li><a href="https://www.amazon.in/s?k=electronics" target="_blank">More</a></li>
+    </ul>
+  </nav>
+
+  <!-- LOGIN & SIGNUP MODAL -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <!-- Login Form -->
+      <div id="loginForm">
+        <h2>Login</h2>
+        <form>
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" required>
+
+          <div class="options">
+            <label><input type="checkbox"> Remember Me</label>
+            <a href="#" class="forgot">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signupForm" style="display:none;">
+        <h2>Sign Up</h2>
+        <form>
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter your name" required>
+
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+
+          <label>Password</label>
+          <input type="password" placeholder="Create a password" required>
+
+          <label>Confirm Password</label>
+          <input type="password" placeholder="Confirm your password" required>
+
+          <button type="submit" class="login-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <!-- Smartphones -->
+  <section id="mobiles">
+    <h1>Smartphones</h1>
+    <div class="product-grid">
+      <div class="card"><img src="iphone.webp">
+        <h2>iPhone 15 Pro</h2>
+        <p>128GB • A17 Chip</p>
+        <p class="price">₹1,39,900</p><button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="card"><img src="S24 ULTRA.WEBP">
+        <h2>Samsung S24 Ultra</h2>
+        <p>256GB • 200MP Camera</p>
+        <p class="price">₹1,29,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="ONE PLUS 12R.webp">
+        <h2>OnePlus 12R</h2>
+        <p>512GB • AMOLED</p>
+        <p class="price">₹49,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="REALME.webp">
+        <h2>Realme 15 Pro</h2>
+        <p>256GB • Curved Display</p>
+        <p class="price">₹31,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="OPPO.webp">
+        <h2>OPPO Reno 14</h2>
+        <p>256GB • AI Camera</p>
+        <p class="price">₹39,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="Googl.webp">
+        <h2>Google Pixel 8 Pro</h2>
+        <p>128GB • Tensor G3</p>
+        <p class="price">₹1,06,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/I/71ZDY57yTQL._SL1500_.jpg">
+        <h2>iPhone 14</h2>
+        <p>128GB • A15 Bionic</p>
+        <p class="price">₹79,900</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Nothing.jpg">
+        <h2>Nothing Phone (2)</h2>
+        <p>256GB • Glyph Interface</p>
+        <p class="price">₹44,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Vivo.webp">
+        <h2>Vivo X100 Pro</h2>
+        <p>512GB • Zeiss Camera</p>
+        <p class="price">₹89,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71ZDY57yTQL._SL1500_.jpg">
+      <h2>iPhone 14</h2>
+      <p>128GB • A15 Bionic</p>
+      <p class="price">₹79,900</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="SamZ.webp">
+      <h2>Samsung Galaxy Z Fold 5</h2>
+      <p>512GB • Foldable</p>
+      <p class="price">₹1,54,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+
+    <div class="card">
+      <img src="Moto.webp">
+      <h2>Motorola Edge 40</h2>
+      <p>256GB • 50MP OIS</p>
+      <p class="price">₹29,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="IQ.webp">
+      <h2>iQOO 12</h2>
+      <p>512GB • Snapdragon 8 Gen 3</p>
+      <p class="price">₹56,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.amazon.in/s?k=smartphones" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Smartphones
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Laptops -->
+  <section id="laptops">
+    <h1>Laptops</h1>
+    <div class="product-grid">
+      <div class="card"><img src="https://m.media-amazon.com/images/I/71f5Eu5lJSL._SL1500_.jpg">
+        <h2>MacBook Air M2</h2>
+        <p>13" Retina • 512GB SSD</p>
+        <p class="price">₹1,09,900</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="https://m.media-amazon.com/images/I/71S8U9VzLTL._SL1500_.jpg">
+        <h2>HP Pavilion 15</h2>
+        <p>Ryzen 7 • 16GB RAM</p>
+        <p class="price">₹74,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="https://m.media-amazon.com/images/I/81bc8mA3nKL._SL1500_.jpg">
+        <h2>Dell Alienware</h2>
+        <p>RTX 4080 • Gaming Beast</p>
+        <p class="price">₹2,49,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="lenyo.webp">
+        <h2>Lenovo Yoga</h2>
+        <p>Touchscreen • 512GB</p>
+        <p class="price">₹82,000</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="ASUS.webp">
+        <h2>Asus ROG Strix</h2>
+        <p>i9 • 32GB RAM • 1TB SSD</p>
+        <p class="price">₹2,19,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="MAcpr.webp">
+        <h2>Apple MacBook Pro M2</h2>
+        <p>16GB RAM • 512GB SSD</p>
+        <p class="price">₹1,49,900</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Rog.webp">
+        <h2>Asus ROG Strix G16</h2>
+        <p>RTX 4060 • 16GB RAM</p>
+        <p class="price">₹1,34,990</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Dell.webp">
+        <h2>Dell XPS 13</h2>
+        <p>Intel i7 • 16GB RAM</p>
+        <p class="price">₹1,24,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+       <div class="card">
+      <img src="Acer.webp">
+      <h2>Acer Predator Helios 16</h2>
+      <p>RTX 4070 • i7 13th Gen</p>
+      <p class="price">₹1,79,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71s1LRpaprL._SL1500_.jpg">
+      <h2>MSI Stealth 15</h2>
+      <p>i7 • RTX 4060 • 144Hz</p>
+      <p class="price">₹1,42,990</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71c5W9NxN5L._SL1500_.jpg">
+      <h2>HP Omen 16</h2>
+      <p>Ryzen 9 • RTX 4080</p>
+      <p class="price">₹1,89,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Zen.webp">
+      <h2>Asus ZenBook 14</h2>
+      <p>OLED • i7 • 16GB RAM</p>
+      <p class="price">₹99,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Book3.webp">
+      <h2>Samsung Galaxy Book 3 Pro</h2>
+      <p>16" AMOLED • i7 13th Gen</p>
+      <p class="price">₹1,55,000</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.flipkart.com/laptops-store" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Laptops
+        </a>
+      </p>
+
+    </div>
+  </section> <!-- Gadgets -->
+  <section id="gadgets">
+    <h1>Gadgets</h1>
+    <div class="product-grid">
+      <div class="card"><img src="APPLE.webp">
+        <h2>Apple Watch Ultra</h2>
+        <p>49mm • GPS + Cellular</p>
+        <p class="price">₹89,900</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="AIRPODS.webp">
+        <h2>AirPods Pro 2</h2>
+        <p>ANC • MagSafe</p>
+        <p class="price">₹24,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="SAMSUNGS.webp">
+        <h2>Samsung Galaxy Buds</h2>
+        <p>Wireless Earbuds</p>
+        <p class="price">₹9,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="FITVERSE.webp">
+        <h2>Fitbit Versa 4</h2>
+        <p>Fitness Tracker</p>
+        <p class="price">₹15,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="GOPRO.jpg">
+        <h2>GoPro Hero 12</h2>
+        <p>Action Camera</p>
+        <p class="price">₹42,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="Pro2.webp">
+        <h2>Apple AirPods Pro 2</h2>
+        <p>ANC • Spatial Audio</p>
+        <p class="price">₹24,900</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="S6.webp">
+        <h2>Samsung Galaxy Watch 6</h2>
+        <p>Bluetooth • AMOLED</p>
+        <p class="price">₹29,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="card">
+      <img src="Sony.avif">
+      <h2>Sony WH-1000XM5</h2>
+      <p>Noise Cancelling Headphones</p>
+      <p class="price">₹32,990</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Bose.webp">
+      <h2>Bose QuietComfort Earbuds II</h2>
+      <p>Wireless ANC Earbuds</p>
+      <p class="price">₹28,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Amazon.webp">
+      <h2>Amazon Echo Dot 5th Gen</h2>
+      <p>Smart Speaker with Alexa</p>
+      <p class="price">₹4,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.amazon.in/s?k=gadgets" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Gadgets
+        </a>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Appliances -->
+  <section id="appliances">
+    <h1>Appliances</h1>
+    <div class="product-grid">
+      <div class="card"><img src="LGS.webp">
+        <h2>LG Smart TV 55"</h2>
+        <p>4K UHD • WebOS</p>
+        <p class="price">₹59,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="refr.avif">
+        <h2>Samsung Refrigerator</h2>
+        <p>345L • Double Door</p>
+        <p class="price">₹38,500</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="washing.webp">
+        <h2>Bosch Washing Machine</h2>
+        <p>7kg • Front Load</p>
+        <p class="price">₹32,000</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="fryr.webp">
+        <h2>Philips Air Fryer</h2>
+        <p>Rapid Air Tech</p>
+        <p class="price">₹12,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="dyson.jpeg">
+        <h2>Dyson Vacuum Cleaner</h2>
+        <p>Cordless • Powerful</p>
+        <p class="price">₹45,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="ACT.avif">
+        <h2>LG 1.5 Ton Inverter AC</h2>
+        <p>Energy Saving • 5 Star</p>
+        <p class="price">₹42,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+       <div class="card">
+      <img src="Oven.webp">
+      <h2>IFB Microwave Oven 30L</h2>
+      <p>Convection • Grill</p>
+      <p class="price">₹14,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Puri.webp">
+      <h2>Mi Smart Air Purifier 4</h2>
+      <p>HEPA Filter • 360° Suction</p>
+      <p class="price">₹11,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+
+    <div class="card">
+      <img src="Grinder.webp">
+      <h2>Philips Mixer Grinder</h2>
+      <p>750W • 3 Jars</p>
+      <p class="price">₹4,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.flipkart.com/home-appliances-store" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Appliances
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>ShopSmart Electronics</h3>
+    <p>Address: Basantpur, west champaran Bihar • Contact: 9155350219</p>
+    <div class="socials">
+      <a href="https://instagram.com/ra_dhe_1905" target="_blank">📷ra_dhe_1905</a>
+      <a href="mailto:kumarradhebhai407@gmail.com">✉️ Email Us</a>
+      <a href="https://twitter.com" target="_blank">🐦</a>
+    </div>
+  </footer>
+
+  <script>
+ // SEARCH FUNCTION WITH AUTO RESET AND FLASH
+const allProducts = document.querySelectorAll('.product-grid .card');
+let lastHighlighted = null;
+
+document.querySelector('.search-bar input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const query = e.target.value.trim().toLowerCase();
+    if (!query) return;
+
+    // Reset previous highlight
+    if (lastHighlighted) {
+      lastHighlighted.style.order = '';
+      lastHighlighted.style.border = '1px solid #ddd';
+      lastHighlighted.classList.remove('highlight-flash');
+      lastHighlighted = null;
+    }
+
+    // Search locally
+    let found = false;
+    allProducts.forEach(card => {
+      const title = card.querySelector('h2').innerText.toLowerCase();
+      if (title.includes(query)) {
+        card.style.order = '-1';
+        card.style.border = '2px solid #ff6f61';
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('highlight-flash'); // add flash effect
+        lastHighlighted = card;
+        found = true;
+      }
+    });
+
+    // If not found locally, show Amazon/Flipkart links
+    if (!found) {
+      const amazonSearch = `https://www.amazon.in/s?k=${encodeURIComponent(query)}`;
+      const flipkartSearch = `https://www.flipkart.com/search?q=${encodeURIComponent(query)}`;
+      showSearchResults(`
+        <p>No local products found for "<b>${query}</b>".</p>
+        <p>Check online:</p>
+        <a href="${flipkartSearch}" target="_blank" style="color:#ff6f61; font-weight:bold;">Flipkart</a> | 
+        <a href="${amazonSearch}" target="_blank" style="color:#ff6f61; font-weight:bold;">Amazon</a>
+      `);
+    } else {
+      const resultsDiv = document.getElementById('searchResults');
+      if (resultsDiv) resultsDiv.innerHTML = '';
+    }
+  }
+});
+function showSearchResults(html) {
+  let resultsDiv = document.getElementById('searchResults');
+  if (!resultsDiv) {
+    resultsDiv = document.createElement('div');
+    resultsDiv.id = 'searchResults';
+    document.body.insertBefore(resultsDiv, document.body.firstChild);
+  }
+  resultsDiv.innerHTML = html;
+}
+  </script>
+<!-- Other HTML content -->
+
+<script>
+/* Place the credential storage and validation code here */
+let registeredEmail = '';
+let registeredPassword = '';
+
+document.querySelector('#signupForm form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  const password = e.target.querySelector('input[type="password"]').value;
+  registeredEmail = email;
+  registeredPassword = password;
+  alert('Sign Up Successful! Please login with the same email and password.');
+  document.getElementById('signupForm').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
+});
+
+document.querySelector('#loginForm form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  const password = e.target.querySelector('input[type="password"]').value;
+  if (email === registeredEmail && password === registeredPassword) {
+    alert('Login successful!');
+  } else {
+    alert('Incorrect email or password. Please use the same credentials as you used during Sign Up.');
+  }
+});
+</script>
+
+</body>
+<script src="script.js"></script>
+
+</html>
