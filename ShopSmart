@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopSmart Electronics</title>
+  <link rel="icon" type="image/png" href="ELEC.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Search results container */
+    #searchResults {
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      margin: 20px;
+    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #ff6f61, #ff9068);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.search-bar input {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    width: 250px;
+    outline: none;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-right button {
+    background: white;
+    color: #ff6f61;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.header-right button:hover {
+    background: #333;
+    color: white;
+}
+
+/* Navbar */
+nav {
+    background: white;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+    font-weight: 700;
+}
+
+nav .search input {
+    padding: 5px 10px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+/* Sections */
+section {
+    padding: 50px 80px;
+}
+
+section h1 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #222;
+    border-left: 5px solid #ff6f61;
+    padding-left: 12px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #ff6f61;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.buy-btn {
+    background: #ff6f61;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    background: #e85c50;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 30px 80px;
+    margin-top: 40px;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.socials {
+    margin-top: 15px;
+}
+
+.socials a {
+    color: white;
+    margin-right: 15px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.socials a:hover {
+    color: #ff6f61;
+}
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+/* Modal Box */
+.modal-content {
+    background: #fff;
+    margin: 7% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff6f61;
+}
+
+/* Form */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.modal-content input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.login-btn {
+    background: #ff6f61;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background: #e85c50;
+    transform: scale(1.05);
+}
+
+/* Options Row */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.options label {
+    cursor: pointer;
+}
+
+.options .forgot {
+    text-decoration: none;
+    color: #ff6f61;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.options .forgot:hover {
+    color: #e85c50;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-content p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.modal-content a {
+    color: #ff6f61;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section p a {
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 10px;
+    background: #ff6f61;
+    color: white !important;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+section p a:hover {
+    background: #e85c50;
+    transform: scale(1.05);
+}
+
+/* ---------- MODAL BASE ---------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 8% auto;
+    padding: 25px;
+    border-radius: 20px;
+    width: 400px;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+.close:hover {
+    color: red;
+}
+
+/* ---------- GIFT MODAL ---------- */
+#giftModal .modal-content {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: white;
+}
+
+#giftModal h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#giftModal label {
+    display: block;
+    margin: 8px 0 5px;
+}
+
+#giftModal input,
+#giftModal textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 12px;
+}
+
+#giftModal .login-btn {
+    width: 100%;
+    background: white;
+    color: #ff4d79;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#giftModal .login-btn:hover {
+    background: #ffe6ec;
+}
+
+/* ---------- CART MODAL ---------- */
+#cartModal .modal-content {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+}
+
+#cartModal h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#cartItems {
+    max-height: 250px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 6px 0;
+}
+
+.cart-item button {
+    background: red;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background: darkred;
+}
+
+#checkoutBtn {
+    width: 100%;
+    background: white;
+    color: #0077b6;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#checkoutBtn:hover {
+    background: #e3f2fd;
+}
+
+.add-cart-btn {
+    background: #ff9800;
+    color: white;
+    border: none;
+    margin-top: 8px;
+    width: 70%;
+    border-radius: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    padding: 8px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+.add-cart-btn:hover {
+    background: #e68900;
+}
+
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes flash {
+  0% { background-color: #fff; }
+  50% { background-color: #fff3e0; }
+  100% { background-color: #fff; }
+}
+
+.highlight-flash {
+  animation: flash 1.5s ease-in-out;
+}
+/* ---------- SEARCH RESULTS ---------- */
+#searchResults {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+}
+  </style>
+
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">ShopSmart</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products...">
+    </div>
+    <div class="header-right">
+      <button id="giftBtn">🎁 Gift</button>
+      <button id="cartBtn">🛒 Cart</button>
+    </div>
+  </header>
+
+  <!-- GIFT MODAL -->
+  <div id="giftModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Send a Gift 🎁</h2>
+      <form id="giftForm">
+        <label>Recipient Name</label>
+        <input type="text" required>
+        <label>Recipient Email</label>
+        <input type="email" required>
+        <label>Message</label>
+        <textarea rows="3" placeholder="Write your message..."></textarea>
+        <button type="submit" class="login-btn">Send Gift</button>
+      </form>
+    </div>
+  </div>
+  <!-- CART MODAL -->
+
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Your Cart 🛒</h2>
+      <div id="cartItems"></div>
+      <button class="login-btn" id="checkoutBtn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#mobiles">Mobiles</a></li>
+      <li><a href="#laptops">Laptops</a></li>
+      <li><a href="#gadgets">Gadgets</a></li>
+      <li><a href="#appliances">Appliances</a></li>
+      <li><a href="https://www.amazon.in/s?k=electronics" target="_blank">More</a></li>
+    </ul>
+  </nav>
+
+  <!-- LOGIN & SIGNUP MODAL -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <!-- Login Form -->
+      <div id="loginForm">
+        <h2>Login</h2>
+        <form>
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" required>
+
+          <div class="options">
+            <label><input type="checkbox"> Remember Me</label>
+            <a href="#" class="forgot">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signupForm" style="display:none;">
+        <h2>Sign Up</h2>
+        <form>
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter your name" required>
+
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+
+          <label>Password</label>
+          <input type="password" placeholder="Create a password" required>
+
+          <label>Confirm Password</label>
+          <input type="password" placeholder="Confirm your password" required>
+
+          <button type="submit" class="login-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <!-- Smartphones -->
+  <section id="mobiles">
+    <h1>Smartphones</h1>
+    <div class="product-grid">
+      <div class="card"><img src="iphone.webp">
+        <h2>iPhone 15 Pro</h2>
+        <p>128GB • A17 Chip</p>
+        <p class="price">₹1,39,900</p><button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="card"><img src="S24 ULTRA.WEBP">
+        <h2>Samsung S24 Ultra</h2>
+        <p>256GB • 200MP Camera</p>
+        <p class="price">₹1,29,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="ONE PLUS 12R.webp">
+        <h2>OnePlus 12R</h2>
+        <p>512GB • AMOLED</p>
+        <p class="price">₹49,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="REALME.webp">
+        <h2>Realme 15 Pro</h2>
+        <p>256GB • Curved Display</p>
+        <p class="price">₹31,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="OPPO.webp">
+        <h2>OPPO Reno 14</h2>
+        <p>256GB • AI Camera</p>
+        <p class="price">₹39,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="Googl.webp">
+        <h2>Google Pixel 8 Pro</h2>
+        <p>128GB • Tensor G3</p>
+        <p class="price">₹1,06,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/I/71ZDY57yTQL._SL1500_.jpg">
+        <h2>iPhone 14</h2>
+        <p>128GB • A15 Bionic</p>
+        <p class="price">₹79,900</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Nothing.jpg">
+        <h2>Nothing Phone (2)</h2>
+        <p>256GB • Glyph Interface</p>
+        <p class="price">₹44,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Vivo.webp">
+        <h2>Vivo X100 Pro</h2>
+        <p>512GB • Zeiss Camera</p>
+        <p class="price">₹89,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71ZDY57yTQL._SL1500_.jpg">
+      <h2>iPhone 14</h2>
+      <p>128GB • A15 Bionic</p>
+      <p class="price">₹79,900</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="SamZ.webp">
+      <h2>Samsung Galaxy Z Fold 5</h2>
+      <p>512GB • Foldable</p>
+      <p class="price">₹1,54,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+
+    <div class="card">
+      <img src="Moto.webp">
+      <h2>Motorola Edge 40</h2>
+      <p>256GB • 50MP OIS</p>
+      <p class="price">₹29,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="IQ.webp">
+      <h2>iQOO 12</h2>
+      <p>512GB • Snapdragon 8 Gen 3</p>
+      <p class="price">₹56,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.amazon.in/s?k=smartphones" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Smartphones
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Laptops -->
+  <section id="laptops">
+    <h1>Laptops</h1>
+    <div class="product-grid">
+      <div class="card"><img src="https://m.media-amazon.com/images/I/71f5Eu5lJSL._SL1500_.jpg">
+        <h2>MacBook Air M2</h2>
+        <p>13" Retina • 512GB SSD</p>
+        <p class="price">₹1,09,900</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="https://m.media-amazon.com/images/I/71S8U9VzLTL._SL1500_.jpg">
+        <h2>HP Pavilion 15</h2>
+        <p>Ryzen 7 • 16GB RAM</p>
+        <p class="price">₹74,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="https://m.media-amazon.com/images/I/81bc8mA3nKL._SL1500_.jpg">
+        <h2>Dell Alienware</h2>
+        <p>RTX 4080 • Gaming Beast</p>
+        <p class="price">₹2,49,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="lenyo.webp">
+        <h2>Lenovo Yoga</h2>
+        <p>Touchscreen • 512GB</p>
+        <p class="price">₹82,000</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="ASUS.webp">
+        <h2>Asus ROG Strix</h2>
+        <p>i9 • 32GB RAM • 1TB SSD</p>
+        <p class="price">₹2,19,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="MAcpr.webp">
+        <h2>Apple MacBook Pro M2</h2>
+        <p>16GB RAM • 512GB SSD</p>
+        <p class="price">₹1,49,900</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Rog.webp">
+        <h2>Asus ROG Strix G16</h2>
+        <p>RTX 4060 • 16GB RAM</p>
+        <p class="price">₹1,34,990</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="Dell.webp">
+        <h2>Dell XPS 13</h2>
+        <p>Intel i7 • 16GB RAM</p>
+        <p class="price">₹1,24,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+       <div class="card">
+      <img src="Acer.webp">
+      <h2>Acer Predator Helios 16</h2>
+      <p>RTX 4070 • i7 13th Gen</p>
+      <p class="price">₹1,79,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71s1LRpaprL._SL1500_.jpg">
+      <h2>MSI Stealth 15</h2>
+      <p>i7 • RTX 4060 • 144Hz</p>
+      <p class="price">₹1,42,990</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71c5W9NxN5L._SL1500_.jpg">
+      <h2>HP Omen 16</h2>
+      <p>Ryzen 9 • RTX 4080</p>
+      <p class="price">₹1,89,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Zen.webp">
+      <h2>Asus ZenBook 14</h2>
+      <p>OLED • i7 • 16GB RAM</p>
+      <p class="price">₹99,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Book3.webp">
+      <h2>Samsung Galaxy Book 3 Pro</h2>
+      <p>16" AMOLED • i7 13th Gen</p>
+      <p class="price">₹1,55,000</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.flipkart.com/laptops-store" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Laptops
+        </a>
+      </p>
+
+    </div>
+  </section> <!-- Gadgets -->
+  <section id="gadgets">
+    <h1>Gadgets</h1>
+    <div class="product-grid">
+      <div class="card"><img src="APPLE.webp">
+        <h2>Apple Watch Ultra</h2>
+        <p>49mm • GPS + Cellular</p>
+        <p class="price">₹89,900</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="AIRPODS.webp">
+        <h2>AirPods Pro 2</h2>
+        <p>ANC • MagSafe</p>
+        <p class="price">₹24,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="SAMSUNGS.webp">
+        <h2>Samsung Galaxy Buds</h2>
+        <p>Wireless Earbuds</p>
+        <p class="price">₹9,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="FITVERSE.webp">
+        <h2>Fitbit Versa 4</h2>
+        <p>Fitness Tracker</p>
+        <p class="price">₹15,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="GOPRO.jpg">
+        <h2>GoPro Hero 12</h2>
+        <p>Action Camera</p>
+        <p class="price">₹42,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="Pro2.webp">
+        <h2>Apple AirPods Pro 2</h2>
+        <p>ANC • Spatial Audio</p>
+        <p class="price">₹24,900</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="S6.webp">
+        <h2>Samsung Galaxy Watch 6</h2>
+        <p>Bluetooth • AMOLED</p>
+        <p class="price">₹29,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+      <div class="card">
+      <img src="Sony.avif">
+      <h2>Sony WH-1000XM5</h2>
+      <p>Noise Cancelling Headphones</p>
+      <p class="price">₹32,990</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Bose.webp">
+      <h2>Bose QuietComfort Earbuds II</h2>
+      <p>Wireless ANC Earbuds</p>
+      <p class="price">₹28,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Amazon.webp">
+      <h2>Amazon Echo Dot 5th Gen</h2>
+      <p>Smart Speaker with Alexa</p>
+      <p class="price">₹4,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.amazon.in/s?k=gadgets" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Gadgets
+        </a>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Appliances -->
+  <section id="appliances">
+    <h1>Appliances</h1>
+    <div class="product-grid">
+      <div class="card"><img src="LGS.webp">
+        <h2>LG Smart TV 55"</h2>
+        <p>4K UHD • WebOS</p>
+        <p class="price">₹59,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="refr.avif">
+        <h2>Samsung Refrigerator</h2>
+        <p>345L • Double Door</p>
+        <p class="price">₹38,500</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="washing.webp">
+        <h2>Bosch Washing Machine</h2>
+        <p>7kg • Front Load</p>
+        <p class="price">₹32,000</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="fryr.webp">
+        <h2>Philips Air Fryer</h2>
+        <p>Rapid Air Tech</p>
+        <p class="price">₹12,990</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card"><img src="dyson.jpeg">
+        <h2>Dyson Vacuum Cleaner</h2>
+        <p>Cordless • Powerful</p>
+        <p class="price">₹45,999</p><button class="buy-btn">Buy Now</button><button class="add-cart-btn">Add to
+          Cart</button>
+      </div>
+      <div class="card">
+        <img src="ACT.avif">
+        <h2>LG 1.5 Ton Inverter AC</h2>
+        <p>Energy Saving • 5 Star</p>
+        <p class="price">₹42,999</p>
+        <button class="buy-btn">Buy Now</button>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+
+       <div class="card">
+      <img src="Oven.webp">
+      <h2>IFB Microwave Oven 30L</h2>
+      <p>Convection • Grill</p>
+      <p class="price">₹14,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="Puri.webp">
+      <h2>Mi Smart Air Purifier 4</h2>
+      <p>HEPA Filter • 360° Suction</p>
+      <p class="price">₹11,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+
+
+    <div class="card">
+      <img src="Grinder.webp">
+      <h2>Philips Mixer Grinder</h2>
+      <p>750W • 3 Jars</p>
+      <p class="price">₹4,999</p>
+      <button class="buy-btn">Buy Now</button>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+      <p style="text-align:center; margin-top:20px;">
+        <a href="https://www.flipkart.com/home-appliances-store" target="_blank"
+          style="color:#ff6f61; font-weight:bold; text-decoration:none;">
+          👉 See More Appliances
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>ShopSmart Electronics</h3>
+    <p>Address: Basantpur, west champaran Bihar • Contact: 9155350219</p>
+    <div class="socials">
+      <a href="https://instagram.com/ra_dhe_1905" target="_blank">📷ra_dhe_1905</a>
+      <a href="mailto:kumarradhebhai407@gmail.com">✉️ Email Us</a>
+      <a href="https://twitter.com" target="_blank">🐦</a>
+    </div>
+  </footer>
+
+  <script>
+ // SEARCH FUNCTION WITH AUTO RESET AND FLASH
+const allProducts = document.querySelectorAll('.product-grid .card');
+let lastHighlighted = null;
+
+document.querySelector('.search-bar input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const query = e.target.value.trim().toLowerCase();
+    if (!query) return;
+
+    // Reset previous highlight
+    if (lastHighlighted) {
+      lastHighlighted.style.order = '';
+      lastHighlighted.style.border = '1px solid #ddd';
+      lastHighlighted.classList.remove('highlight-flash');
+      lastHighlighted = null;
+    }
+
+    // Search locally
+    let found = false;
+    allProducts.forEach(card => {
+      const title = card.querySelector('h2').innerText.toLowerCase();
+      if (title.includes(query)) {
+        card.style.order = '-1';
+        card.style.border = '2px solid #ff6f61';
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('highlight-flash'); // add flash effect
+        lastHighlighted = card;
+        found = true;
+      }
+    });
+
+    // If not found locally, show Amazon/Flipkart links
+    if (!found) {
+      const amazonSearch = `https://www.amazon.in/s?k=${encodeURIComponent(query)}`;
+      const flipkartSearch = `https://www.flipkart.com/search?q=${encodeURIComponent(query)}`;
+      showSearchResults(`
+        <p>No local products found for "<b>${query}</b>".</p>
+        <p>Check online:</p>
+        <a href="${flipkartSearch}" target="_blank" style="color:#ff6f61; font-weight:bold;">Flipkart</a> | 
+        <a href="${amazonSearch}" target="_blank" style="color:#ff6f61; font-weight:bold;">Amazon</a>
+      `);
+    } else {
+      const resultsDiv = document.getElementById('searchResults');
+      if (resultsDiv) resultsDiv.innerHTML = '';
+    }
+  }
+});
+function showSearchResults(html) {
+  let resultsDiv = document.getElementById('searchResults');
+  if (!resultsDiv) {
+    resultsDiv = document.createElement('div');
+    resultsDiv.id = 'searchResults';
+    document.body.insertBefore(resultsDiv, document.body.firstChild);
+  }
+  resultsDiv.innerHTML = html;
+}
+  </script>
+<!-- Other HTML content -->
+
+<script>
+/* Place the credential storage and validation code here */
+let registeredEmail = '';
+let registeredPassword = '';
+
+document.querySelector('#signupForm form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  const password = e.target.querySelector('input[type="password"]').value;
+  registeredEmail = email;
+  registeredPassword = password;
+  alert('Sign Up Successful! Please login with the same email and password.');
+  document.getElementById('signupForm').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
+});
+
+document.querySelector('#loginForm form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  const password = e.target.querySelector('input[type="password"]').value;
+  if (email === registeredEmail && password === registeredPassword) {
+    alert('Login successful!');
+  } else {
+    alert('Incorrect email or password. Please use the same credentials as you used during Sign Up.');
+  }
+});
+    var modal = document.getElementById("authModal");
+    var loginForm = document.getElementById("loginForm");
+    var signupForm = document.getElementById("signupForm");
+    var showSignup = document.getElementById("showSignup");
+    var showLogin = document.getElementById("showLogin");
+
+    // Show login modal on page load
+    window.onload = function () {
+      modal.style.display = "block";
+      loginForm.style.display = "block";
+      signupForm.style.display = "none";
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    };
+
+    // Login submission
+    loginForm.querySelector("form").onsubmit = function (e) {
+      e.preventDefault();
+      alert("Login Successful!");
+      modal.style.display = "none";
+      document.body.style.overflow = "auto"; // Enable scrolling
+    };
+
+    // Signup submission
+    signupForm.querySelector("form").onsubmit = function (e) {
+      e.preventDefault();
+      alert("Sign Up Successful!");
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    };
+
+    // Toggle to signup
+    showSignup.onclick = function (e) {
+      e.preventDefault();
+      loginForm.style.display = "none";
+      signupForm.style.display = "block";
+    };
+
+    // Toggle to login
+    showLogin.onclick = function (e) {
+      e.preventDefault();
+      signupForm.style.display = "none";
+      loginForm.style.display = "block";
+    };
+
+    // Disable closing modal
+    document.querySelector(".close").onclick = function () {
+      alert("You must login or sign up to access the site!");
+    };
+    // Get elements
+    const modals = document.querySelectorAll(".modal");
+    const closeButtons = document.querySelectorAll(".close");
+
+    const giftBtn = document.getElementById("giftBtn");
+    const giftModal = document.getElementById("giftModal");
+
+    const cartBtn = document.getElementById("cartBtn");
+    const cartModal = document.getElementById("cartModal");
+    const cartItems = document.getElementById("cartItems");
+// CART LOGIC
+const cartItemsDiv = document.getElementById('cartItems');
+let cart = [];
+
+// Function to render cart
+function renderCart() {
+  cartItemsDiv.innerHTML = '';
+  cart.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.style = "margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;";
+    div.innerHTML = `
+      <span>${item.title} - ₹${item.price.toLocaleString()}</span>
+      <button style="padding:2px 6px; background:#ff6f61; color:white; border:none; border-radius:4px;">Remove</button>
+    `;
+    div.querySelector('button').addEventListener('click', () => {
+      cart.splice(index, 1);
+      renderCart();
+    });
+    cartItemsDiv.appendChild(div);
+  });
+}
+
+// OPEN CART MODAL
+document.getElementById('cartBtn').addEventListener('click', () => {
+  document.getElementById('cartModal').style.display = 'block';
+  renderCart();
+});
+
+// OPEN GIFT MODAL
+document.getElementById('giftBtn').addEventListener('click', () => {
+  document.getElementById('giftModal').style.display = 'block';
+});
+
+// CLOSE MODALS
+document.querySelectorAll('.modal .close').forEach(span => {
+  span.addEventListener('click', () => {
+    span.parentElement.parentElement.style.display = 'none';
+  });
+});
+
+// ADD TO CART BUTTONS
+document.querySelectorAll('.add-cart-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    const title = card.querySelector('h2').innerText;
+    const priceText = card.querySelector('.price').innerText.replace('₹','').replace(',','');
+    const price = parseInt(priceText);
+    cart.push({ title, price });
+    alert(`${title} added to cart!`);
+  });
+});
+
+// BUY NOW BUTTONS → open Gift modal
+document.querySelectorAll('.buy-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    const title = card.querySelector('h2').innerText;
+    document.getElementById('giftModal').style.display = 'block';
+    const msgInput = document.querySelector('#giftForm textarea');
+    msgInput.value = `I want to buy "${title}" as a gift! 🎁`;
+  });
+});
+
+</script>
+
+</body>
+
+</html>
